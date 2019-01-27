@@ -1,0 +1,22 @@
+{
+  "name": "data-structure-in-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "linked-list.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/chloeleichen/dsjs.git"
+  },
+  "author": "chloe chen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chloeleichen/dsjs/issues"
+  },
+  "homepage": "https://github.com/chloeleichen/dsjs#readme",
+  "devDependencies": {
+    "ava": "^1.1.0"
+  }
+}

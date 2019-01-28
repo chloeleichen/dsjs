@@ -3,6 +3,7 @@ const LinkedList = require('./linked-list.js');
 const singlyLinkedList = LinkedList.LinkedList;
 const doublyLinkedList = LinkedList.DoublyLinkedList;
 const node = LinkedList.Node;
+const removeNthFromEnd = LinkedList.removeNthFromEnd;
 const test = require('ava');
 
 test.beforeEach(t=>{
@@ -200,4 +201,14 @@ test('find an non-existant element in doublyLinkedList', t=>{
   t.is(result, null);
 })
 
-
+test('remove nth from end for singlyLinkedList of unknown length', t=>{
+  const list = t.context.singlyLinkedList;
+  list.pushBack('fifth');
+  list.pushBack('sixth');
+  console.log(list)
+  const result = removeNthFromEnd(list, 2);
+  t.is(result.head.value, 'first')
+  t.is(result.head.next.value, 'second')
+  t.is(result.head.next.next.value, 'third')
+  t.is(result.head.next.next.next.value, "fifth")
+})

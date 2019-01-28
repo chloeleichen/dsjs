@@ -249,8 +249,72 @@ DoublyLinkedList.prototype.popBack = function(){
   return this;
 }
 
+// remove nth from end of length unknown
+const removeNthFromEnd = (list, n) => {
+  let dummy = list.head;
+  let current = list.head;
+  if(n === 0){
+    while(current.next.next){
+      current = current.next;
+    }
+    current.next = null;
+    return current;
+  }
+  // move forward n place, left length - n place to move
+  // when n =0, remove first item, dummy length needs to be 0
+  for(let i = 0; i <= n + 1; i++){
+    dummy = dummy.next;
+  }
+
+  while(dummy){
+    dummy=dummy.next;
+    current=current.next;
+  }
+  current.next =current.next.next ? current.next.next : null;
+  return list; 
+}
+
+
+/** 
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+const reverseList = function(head) {
+   /* - in addition to filtering, also acts as base case for below recursion */
+   if (head === null || head.next === null)   return head;
+    
+   /* - traverses to end of list
+   // - base case (previous line) reached when head next equals null */
+   let reversed = reverseList(head.next); 
+     
+  //  /* - redirects current node's next next back to itself */
+   reversed.next = head; 
+     
+  // /* - sets current node's next to null
+  // // - gets replaced by previous line as recursion progesses */
+  head.next = null;      
+  return reversed;
+};
+
+const node = new LinkedList().pushBack(1).pushBack(2).pushBack(3).pushBack(4).pushBack(5);
+const reversed = listToString(reverseList(node.head));
+
+console.log(reversed);
+
+function listToString(list){
+  let array = [list.value];
+  let current = list;
+  while(current.next){
+    array.push(current.next.value);
+    current = current.next;
+  }
+
+  return array;
+}
+
 module.exports= {
   LinkedList,
   DoublyLinkedList,
-  Node
+  Node, 
+  removeNthFromEnd
 }

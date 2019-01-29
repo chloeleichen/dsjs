@@ -283,23 +283,60 @@ const reverseList = function(head) {
    /* - in addition to filtering, also acts as base case for below recursion */
    if (head === null || head.next === null)   return head;
     
-   /* - traverses to end of list
-   // - base case (previous line) reached when head next equals null */
-   let reversed = reverseList(head.next); 
+   // - traverses to end of list
+   // - create a new head pointer which points to the last element
+  
+  let reversed = reverseList(head.next); 
      
-  //  /* - redirects current node's next next back to itself */
-   reversed.next = head; 
+  // redirects current node's next next back to itself */
+  // head pointer moves along reversed
+   head.next.next = head; 
      
-  // /* - sets current node's next to null
-  // // - gets replaced by previous line as recursion progesses */
+  //- sets current node's next to null
+  //- gets replaced by previous line as recursion progesses */
   head.next = null;      
   return reversed;
 };
 
-const node = new LinkedList().pushBack(1).pushBack(2).pushBack(3).pushBack(4).pushBack(5);
-const reversed = listToString(reverseList(node.head));
 
-console.log(reversed);
+const reverseListIterate = function(head) {
+  let prev = null;
+  let current = head;
+  while(current){
+    let next = current.next;
+    current.next = prev;
+    prev = current;
+    current = next;
+  }
+  return prev;
+}
+
+const node = new LinkedList().pushBack(1).pushBack(2).pushBack(9).pushBack(18).pushBack(25);
+const node2 = new LinkedList().pushBack(1).pushBack(2).pushBack(4);
+const node3 = new LinkedList().pushBack(5);
+
+// merge two sorted list & return a new list
+function mergeTwoList(l1, l2){
+  const merged = l1;
+  let current = merged;
+  while(current.next){
+    current = current.next;
+  }
+  current.next = l2;
+
+
+  // sort
+  function findMin(list){
+  }
+  const sorted = findMin(merged);
+  return sorted;
+}
+
+
+//const reversed = listToString(reverseList(node.head));
+
+const merged = listToString(mergeTwoList(node2.head, node3.head));
+console.log(merged);
 
 function listToString(list){
   let array = [list.value];

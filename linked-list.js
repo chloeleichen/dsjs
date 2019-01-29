@@ -315,21 +315,24 @@ const node = new LinkedList().pushBack(1).pushBack(2).pushBack(9).pushBack(18).p
 const node2 = new LinkedList().pushBack(1).pushBack(2).pushBack(4);
 const node3 = new LinkedList().pushBack(5);
 
-// merge two sorted list & return a new list
+// merge two sorted list & return a new sorted list
 function mergeTwoList(l1, l2){
-  const merged = l1;
-  let current = merged;
-  while(current.next){
-    current = current.next;
+  let node = Node(0);
+  let head = node;
+  let head1 = l1;
+  let head2 = l2;
+  while(head1 && head2){
+    if(head1.value < head2.value){
+      head.next = head1;
+      head1 = head1.next;
+    } else {
+      head.next = head2;
+      head2 = head2.next;
+    }
+    head = head.next;
   }
-  current.next = l2;
-
-
-  // sort
-  function findMin(list){
-  }
-  const sorted = findMin(merged);
-  return sorted;
+  head.next = head1 ? head1 : head2;
+  return node.next;
 }
 
 
